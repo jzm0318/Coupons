@@ -1,19 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Heart, 
-  Coffee, 
-  Utensils, 
-  Moon, 
-  Sparkles, 
-  Ticket, 
-  Check, 
-  X,
-  Music,
-  Car,
-  Wine,
-  Gift,
-  Smile
-} from 'lucide-react';
+
+// Inline SVG Icon Components to remove dependency on lucide-react
+const HeartIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+);
+const CoffeeIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h12Z"/><path d="M3 14h13"/><path d="M17 11h1a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-1"/><path d="M6 2v2"/></svg>
+);
+const SparklesIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+);
+const UtensilsIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"/></svg>
+);
+const MoonIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+);
+const CheckIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 6 9 17l-5-5"/></svg>
+);
+const CarIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+);
+const WineIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M8 22h8"/><path d="M7 10h10"/><path d="M12 15v7"/><path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></svg>
+);
+const GiftIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5H12Z"/></svg>
+);
+const SmileIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+);
+const TicketIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+);
 
 // Initial coupon data
 const INITIAL_COUPONS = [
@@ -21,7 +41,7 @@ const INITIAL_COUPONS = [
     id: 1,
     title: "Breakfast in Bed",
     description: "Pancakes, sausage, and coffee served with a smile.",
-    icon: <Coffee className="w-6 h-6 text-amber-600" />,
+    icon: <CoffeeIcon className="w-6 h-6 text-amber-600" />,
     color: "bg-amber-50",
     borderColor: "border-amber-200",
     buttonColor: "bg-amber-500 hover:bg-amber-600"
@@ -30,7 +50,7 @@ const INITIAL_COUPONS = [
     id: 2,
     title: "Back Massage",
     description: "30 minutes of relaxation. No complaints allowed.",
-    icon: <Sparkles className="w-6 h-6 text-purple-600" />,
+    icon: <SparklesIcon className="w-6 h-6 text-purple-600" />,
     color: "bg-purple-50",
     borderColor: "border-purple-200",
     buttonColor: "bg-purple-500 hover:bg-purple-600"
@@ -39,7 +59,7 @@ const INITIAL_COUPONS = [
     id: 3,
     title: "Dinner Date Night",
     description: "You get to pick a dinner out of your choosing.",
-    icon: <Utensils className="w-6 h-6 text-rose-600" />,
+    icon: <UtensilsIcon className="w-6 h-6 text-rose-600" />,
     color: "bg-rose-50",
     borderColor: "border-rose-200",
     buttonColor: "bg-rose-500 hover:bg-rose-600"
@@ -48,7 +68,7 @@ const INITIAL_COUPONS = [
     id: 4,
     title: "Movie Night Pick",
     description: "You control the remote. No groaning about your choice.",
-    icon: <Moon className="w-6 h-6 text-indigo-600" />,
+    icon: <MoonIcon className="w-6 h-6 text-indigo-600" />,
     color: "bg-indigo-50",
     borderColor: "border-indigo-200",
     buttonColor: "bg-indigo-500 hover:bg-indigo-600"
@@ -57,7 +77,7 @@ const INITIAL_COUPONS = [
     id: 5,
     title: "Household Chore Pass",
     description: "One chore of your choice, completely handled by me.",
-    icon: <Check className="w-6 h-6 text-emerald-600" />,
+    icon: <CheckIcon className="w-6 h-6 text-emerald-600" />,
     color: "bg-emerald-50",
     borderColor: "border-emerald-200",
     buttonColor: "bg-emerald-500 hover:bg-emerald-600"
@@ -66,7 +86,7 @@ const INITIAL_COUPONS = [
     id: 6,
     title: "Car Wash",
     description: "I take your car to get washed.",
-    icon: <Car className="w-6 h-6 text-blue-600" />,
+    icon: <CarIcon className="w-6 h-6 text-blue-600" />,
     color: "bg-blue-50",
     borderColor: "border-blue-200",
     buttonColor: "bg-blue-500 hover:bg-blue-600"
@@ -75,7 +95,7 @@ const INITIAL_COUPONS = [
     id: 7,
     title: "Wine & Unwind",
     description: "A bottle of wine and quiet time to yourself.",
-    icon: <Wine className="w-6 h-6 text-red-800" />,
+    icon: <WineIcon className="w-6 h-6 text-red-800" />,
     color: "bg-red-50",
     borderColor: "border-red-200",
     buttonColor: "bg-red-800 hover:bg-red-900"
@@ -84,7 +104,7 @@ const INITIAL_COUPONS = [
     id: 8,
     title: "Wildcard",
     description: "Redeemable for one specific request within reason!",
-    icon: <Gift className="w-6 h-6 text-fuchsia-600" />,
+    icon: <GiftIcon className="w-6 h-6 text-fuchsia-600" />,
     color: "bg-fuchsia-50",
     borderColor: "border-fuchsia-200",
     buttonColor: "bg-fuchsia-500 hover:bg-fuchsia-600"
@@ -93,7 +113,7 @@ const INITIAL_COUPONS = [
     id: 9,
     title: "Free Hug",
     description: "One warm, giant hug. Redeemable anytime, infinitely!",
-    icon: <Smile className="w-6 h-6 text-pink-500" />,
+    icon: <SmileIcon className="w-6 h-6 text-pink-500" />,
     color: "bg-pink-50",
     borderColor: "border-pink-200",
     buttonColor: "bg-pink-500 hover:bg-pink-600",
@@ -102,7 +122,6 @@ const INITIAL_COUPONS = [
 ];
 
 export default function App() {
-  // Initialize from localStorage with merge logic
   const [coupons, setCoupons] = useState(() => {
     let currentData = [];
     try {
@@ -114,12 +133,10 @@ export default function App() {
       console.error("Could not load from storage", e);
     }
 
-    // If no data, start fresh
     if (currentData.length === 0) {
       return INITIAL_COUPONS.map(c => ({ ...c, redeemed: false, redeemedAt: null }));
     }
 
-    // If data exists, merge in any new coupons (like the Free Hug one) that aren't in storage yet
     const missingCoupons = INITIAL_COUPONS.filter(ic => !currentData.some(c => c.id === ic.id));
     
     return [
@@ -133,7 +150,6 @@ export default function App() {
   const [showCelebration, setShowCelebration] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
-  // Save to localStorage whenever coupons change
   useEffect(() => {
     try {
       localStorage.setItem('love_coupons_data', JSON.stringify(coupons));
@@ -213,7 +229,7 @@ export default function App() {
         <div className="max-w-3xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="bg-rose-500 p-2 rounded-lg text-white shadow-sm">
-              <Heart className="w-5 h-5 fill-current" />
+              <HeartIcon className="w-5 h-5 fill-current" />
             </div>
             <h1 className="text-xl font-bold text-slate-800 tracking-tight">Brittany's Love Coupons</h1>
           </div>
@@ -248,7 +264,7 @@ export default function App() {
                         Unlimited
                       </span>
                     )}
-                    <Ticket className="w-5 h-5 text-slate-200 group-hover:text-slate-300 transition-colors" />
+                    <TicketIcon className="w-5 h-5 text-slate-200 group-hover:text-slate-300 transition-colors" />
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-slate-800 mb-1">{coupon.title}</h3>
@@ -266,7 +282,7 @@ export default function App() {
           {activeCoupons.length === 0 && (
             <div className="col-span-full py-16 text-center bg-white rounded-xl border-2 border-dashed border-slate-200 mx-4">
               <div className="inline-block p-4 bg-rose-50 rounded-full mb-4">
-                <Heart className="w-12 h-12 text-rose-300 fill-rose-100" />
+                <HeartIcon className="w-12 h-12 text-rose-300 fill-rose-100" />
               </div>
               <h3 className="text-lg font-bold text-slate-700 mb-1">All coupons redeemed!</h3>
               <p className="text-slate-500 text-sm mb-6">I hope you enjoyed every single one.</p>
